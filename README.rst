@@ -48,6 +48,12 @@ The repository layout follows `debian-keyring <https://anonscm.debian.org/git/ke
   This file contains a canonical mapping between GPG keys and the user names of
   their owners used within the DebOps Project.
 
+``leader``
+  This file defines who is the current DebOps Project Leader.
+
+``developers``
+  This file lists all DebOps Developers.
+
 Commit and tag verification
 ---------------------------
 
@@ -78,3 +84,29 @@ command:
 .. code-block:: console
 
    user@host:~$ git tag --verify <tag-id>
+
+Adding your GPG publc key
+-------------------------
+
+When you feel associated with the DebOps Project and have made at least one
+contribution to the Project you are free to add your GPG public key to this
+repository.
+
+To do so you should add your GPG public key(s) to ``debops-keyring-gpg/``
+using:
+
+.. code-block:: console
+
+   user@host:~$ gpg --export <long_key_ID> > <long_key_ID>
+
+And then specify key ID to person mapping in the ``keyids`` file.
+
+Becoming a DebOps Developer
+---------------------------
+
+To become a DebOps Developer, you should have contribution to the DebOps
+Project for a while (say 6 months) and know a thing or two how the Project
+works.
+
+To make this official, all you need to do is follow the `Adding your GPG publc
+key`_ section and then add yourself to the ``developers`` file.

@@ -29,3 +29,9 @@ Added
   ``0x489A4D5EC353C98A`` (Robin Schneider). Refer to `this comment
   <https://github.com/debops/ansible-ifupdown/pull/48#issuecomment-212146099>`_
   for details how I am using the three GPG keys. [ypid]
+
+- Wrote initial "Adding your GPG publc key" and "Becoming a DebOps Developer"
+  sections. [ypid]
+
+- Created ``leader`` and ``developers`` file which list the DebOps Project
+  Leader and the DebOps Developers. [ypid]
