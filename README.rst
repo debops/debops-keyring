@@ -38,6 +38,8 @@ It can be found at the following URL:
 Repository contents
 -------------------
 
+The repository layout follows `debian-keyring <https://anonscm.debian.org/git/keyring/keyring.git/tree/>`_.
+
 ``debops-keyring-gpg/``
   This directory contains OpenPGP / GnuPG keys currently used by the DebOps
   Developers to sign their code and Pull/Merge Requests.
