@@ -25,3 +25,7 @@ Added
 
 - Add GPG key ``0x2DCCF53E9BC74BEC`` (Maciej Delmanowski). [drybjed]
 
+- Add GPG keys ``0x86FD980BBF1A40F8``, ``0x5FE92C12EE88E1F0``,
+  ``0x489A4D5EC353C98A`` (Robin Schneider). Refer to `this comment
+  <https://github.com/debops/ansible-ifupdown/pull/48#issuecomment-212146099>`_
+  for details how I am using the three GPG keys. [ypid]
