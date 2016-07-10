@@ -49,7 +49,10 @@ The repository layout follows `debian-keyring <https://anonscm.debian.org/git/ke
   their owners used within the DebOps Project.
 
 ``leader``
-  This file defines who is the current DebOps Project Leader.
+  This file defines who the current DebOps Project Leader is.
+
+``admin``
+  This file defines who the current DebOps Project Admin is.
 
 ``developers``
   This file lists all DebOps Developers.

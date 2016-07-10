@@ -33,5 +33,8 @@ Added
 - Wrote initial "Adding your GPG publc key" and "Becoming a DebOps Developer"
   sections. [ypid]
 
-- Created ``leader`` and ``developers`` file which list the DebOps Project
-  Leader and the DebOps Developers. [ypid]
+- Created the ``leader`` files which defines the DebOps Project Leader. [ypid]
+
+- Created the ``admin`` file which defines the DebOps Project Admin. [ypid]
+
+- Created the ``developers`` files which lists the DebOps Developers. [ypid]
