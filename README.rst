@@ -1,7 +1,8 @@
 debops-keyring
 ==============
 
-The repository contains OpenPGP / GnuPG keys used by the DebOps Developers.
+The repository contains OpenPGP / GnuPG keys used by the DebOps Developers and
+DebOps Contributors.
 These keys can be used to authenticate and verify the ``git`` commits and tags
 in other DebOps repositories.
 
@@ -56,6 +57,9 @@ The repository layout follows `debian-keyring <https://anonscm.debian.org/git/ke
 
 ``developers``
   This file lists all DebOps Developers.
+
+``contributors``
+  This file lists all DebOps Contributors.
 
 Commit and tag verification
 ---------------------------
