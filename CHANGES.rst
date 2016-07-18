@@ -17,7 +17,7 @@ The current repository maintainer is drybjed.
 Added
 ~~~~~
 
-- Added note intended to get DebOps Developers and DebOps contributors to think
+- Added note intended to get DebOps Developers and DebOps Contributors to think
   about OpSec related to their GPG setup. [ypid]
 
 - Created the ``contributors`` files to list the DebOps Contributors. [ypid]
