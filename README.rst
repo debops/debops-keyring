@@ -108,10 +108,13 @@ using:
 
 And then specify the key ID to person mapping in the ``keyids`` file.
 
-Note that you should be reasonably confident that `no
-one has ever had a copy of your private key
-<https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/>`_.
+Note that you should be reasonably confident that "no
+one has ever had a copy of your private key"[#opsec-snowden-quote]_
 Otherwise you could easily be impersonated.
+Refer to `OpenPGP Best Practices <https://help.riseup.net/en/security/message-security/openpgp/best-practices>`_
+for more details.
+
+.. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
 Becoming a DebOps Developer
 ---------------------------
