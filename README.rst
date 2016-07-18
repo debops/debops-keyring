@@ -108,11 +108,10 @@ using:
 
 And then specify the key ID to person mapping in the ``keyids`` file.
 
-Then please state in the ``git`` commit messages how confident you are that `no
+Note that you should be reasonably confident that `no
 one has ever had a copy of your private key
-<https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/>`_ and
-optionally, in case you feel like disclosing parts of your OpSec, the
-measures you implemented to prevent this from happening.
+<https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/>`_.
+Otherwise you could easily be impersonated.
 
 Becoming a DebOps Developer
 ---------------------------
