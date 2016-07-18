@@ -14,6 +14,18 @@ The current repository maintainer is drybjed.
 
 .. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.1.1...master
 
+Added
+~~~~~
+
+- Added note intended to get DebOps Developers and DebOps Contributors to think
+  about OpSec related to their GPG setup. [ypid]
+
+- Created the ``contributors`` files to list the DebOps Contributors. [ypid]
+
+Changed
+~~~~~~~
+
+- Renamed ``admin`` file to ``admins``. There might be multiple admins. [ypid]
 
 `debops-keyring v0.1.1`_ - 2016-07-10
 -------------------------------------
