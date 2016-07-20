@@ -1,0 +1,6 @@
+# Debian packages: python3-jinja2 python3-gnupg python3-nose2 python3-nose2-cov
+Jinja2>=2.8
+python-gnupg>=0.3.6
+nose>=1.3.7
+nose2>=0.5.0
+nose2-cov>=1.0a4

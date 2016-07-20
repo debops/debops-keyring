@@ -1,10 +1,10 @@
 debops-keyring
 ==============
 
-The repository contains OpenPGP / GnuPG keys used by the DebOps Developers and
+The debops-keyring_ contains OpenPGP / GnuPG keys used by the DebOps Developers and
 DebOps Contributors.
 These keys can be used to authenticate and verify the ``git`` commits and tags
-in other DebOps repositories.
+in main repositories of the DebOps Project.
 
 .. contents::
    :local:
@@ -24,7 +24,7 @@ signing each ``git`` commit is sensible or not.
 See also
 ~~~~~~~~
 
-- `DebOps Code Signing Policy <https://github.com/debops/debops-policy/blob/master/docs/code-signing.rst>`_
+- `DebOps Code Signing Policy <http://docs.debops.org/en/latest/debops-policy/docs/code-signing-policy.html>`_
 - `A Git Horror Story: Repository Integrity With Signed Commits <https://mikegerwitz.com/papers/git-horror-story>`_
 
 Canonical source of the debops-keyring repository
@@ -39,11 +39,11 @@ It can be found at the following URL:
 Repository contents
 -------------------
 
-The repository layout follows `debian-keyring <https://anonscm.debian.org/git/keyring/keyring.git/tree/>`_.
+The repository layout is modeled after the `debian-keyring <https://anonscm.debian.org/git/keyring/keyring.git/tree/>`_.
 
 ``debops-keyring-gpg/``
-  This directory contains OpenPGP / GnuPG keys currently used by the DebOps
-  Developers to sign their code and Pull/Merge Requests.
+  This directory contains OpenPGP / GnuPG keys currently used by people working
+  on DebOps.
 
 ``keyids``
   This file contains a canonical mapping between GPG keys and the user names of
@@ -60,6 +60,9 @@ The repository layout follows `debian-keyring <https://anonscm.debian.org/git/ke
 
 ``contributors``
   This file lists all DebOps Contributors.
+
+``bots``
+  This file lists all DebOps Bots.
 
 Commit and tag verification
 ---------------------------
@@ -109,7 +112,7 @@ using:
 And then specify the key ID to person mapping in the ``keyids`` file.
 
 Note that you should be reasonably confident that "no
-one has ever had a copy of your private key"[#opsec-snowden-quote]_
+one has ever had a copy of your private key"[#opsec-snowden-quote]_.
 Otherwise you could easily be impersonated.
 Refer to `OpenPGP Best Practices <https://help.riseup.net/en/security/message-security/openpgp/best-practices>`_
 for more details.
@@ -125,3 +128,6 @@ works.
 
 To make this official, all you need to do is follow the `Adding your GPG publc
 key`_ section and then add yourself to the ``developers`` file.
+
+.. The file needs to be self contained e. g. no includes.
+.. _debops-keyring: https://github.com/debops/debops-keyring
