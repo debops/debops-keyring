@@ -1,6 +1,7 @@
-debops-keyring - repository with GPG keys of the DebOps Developers
+debops-keyring - Repository with OpenPGP keys of the DebOps People
 
 Copyright (C) 2016 Maciej Delmanowski <drybjed@drybjed.net>
+Copyright (C) 2016 Robin Schneider <ypid@riseup.net>
 Copyright (C) 2016 DebOps Project http://debops.org/
 
 This repository is part of DebOps.

@@ -18,11 +18,17 @@ Added
 ~~~~~
 
 - Added note intended to get DebOps Developers and DebOps Contributors to think
-  about OpSec related to their GPG setup. [ypid]
+  about OpSec related to their OpenPGP setup. [ypid]
 
 - Created the ``contributors`` files to list the DebOps Contributors. [ypid]
 
 - Created the ``bots`` files to list the DebOps Bots. [ypid]
+
+- Generate documentation from the machine readable debops-keyring files using a
+  Python 3 script/module. [ypid]
+
+- Use the Python 3 script/module for consistency checking for the
+  debops-keyring. [ypid]
 
 - Require a signed ``git`` commit with the most trusted OpenPGP subkey to add
   or change the corresponding public keys. [ypid]
@@ -32,6 +38,9 @@ Changed
 
 - Renamed ``admin`` file to ``admins``. There might be multiple admins. [ypid]
 
+- Use the term "OpenGPG" when not specifically referring to the GnuPG
+  implementation. [ypid];
+
 `debops-keyring v0.1.1`_ - 2016-07-10
 -------------------------------------
 
@@ -40,12 +49,12 @@ Changed
 Added
 ~~~~~
 
-- Add GPG keys ``0x86FD980BBF1A40F8``, ``0x5FE92C12EE88E1F0``,
+- Add OpenPGP keys ``0x86FD980BBF1A40F8``, ``0x5FE92C12EE88E1F0``,
   ``0x489A4D5EC353C98A`` (Robin Schneider). Refer to `this comment
   <https://github.com/debops/ansible-ifupdown/pull/48#issuecomment-212146099>`_
-  for details how I am using the three GPG keys. [ypid]
+  for details how I am using the three OpenPGP keys. [ypid]
 
-- Wrote initial "Adding your GPG publc key" and "Becoming a DebOps Developer"
+- Wrote initial "Adding your OpenPGP public key" and "Becoming a DebOps Developer"
   sections. [ypid]
 
 - Created the ``leader`` files which defines the DebOps Project Leader. [ypid]
@@ -63,4 +72,4 @@ Added
 
 - Initial release. [drybjed]
 
-- Add GPG key ``0x2DCCF53E9BC74BEC`` (Maciej Delmanowski). [drybjed]
+- Add OpenPGP key ``0x2DCCF53E9BC74BEC`` (Maciej Delmanowski). [drybjed]
