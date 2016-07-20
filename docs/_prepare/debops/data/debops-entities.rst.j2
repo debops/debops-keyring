@@ -1,0 +1,55 @@
+DebOps People
+=============
+
+.. This file is managed by the DebOps Tools, all changes will be lost.
+
+.. include:: includes/all.rst
+{#
+Role models:
+* https://www.torproject.org/about/corepeople.html.en
+#}
+
+{% macro get_rst_block_for_role(role) %}
+
+{%   for entity_data in entities[role] %}
+* `{{ entity_data.name }} <https://wiki.debops.org/wiki:user:{{ entity_data.nick }}>`__ ``[{{ entity_data.nick }}]``
+  {% for entity_role in entity_data.roles if role != (entity_role + "s") %}{{ "– " if (loop.first) else "" }}`{{ entity_role }}`{{ ", " if (not loop.last) else "" }}{% endfor %}
+
+{% if False %}
+{# TODO: Disabled because the docs are currently served via non-encrypted and legacy HTTP so showing the public key fingerprints does not make sense. #}
+  .. container:: toggle
+
+      .. container:: header
+
+          **Click to Show/Hide OpenPGP public key(s)**
+
+      .. code-block:: none
+         :linenos:
+
+         {% for keyid in entity_data.keyids %}
+{# indentfirst did not work #}
+{{ entity_data.key_gpg_output[keyid] | indent(9, indentfirst=False) }}
+         {% endfor %}
+{% endif %}
+
+{# (entity_data.nick|length) * '~' #}
+{%   endfor %}
+{%   if entities[role]|length == 0 %}
+Currently none present in the debops-keyring.
+{%   endif %}
+{% endmacro %}
+
+Refer to the `Organizational structure`_ for details about defined roles and
+terms.
+
+DebOps Developers
+-----------------
+{{ get_rst_block_for_role("developers") }}
+
+DebOps Contributors
+-------------------
+{{ get_rst_block_for_role("contributors") }}
+
+DebOps Bots
+-----------
+{{ get_rst_block_for_role("bots") }}
