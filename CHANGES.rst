@@ -22,6 +22,8 @@ Added
 
 - Created the ``contributors`` files to list the DebOps Contributors. [ypid]
 
+- Add ``.travis.yml`` configuration file for testing on Travis-CI. [drybjed]
+
 Changed
 ~~~~~~~
 
