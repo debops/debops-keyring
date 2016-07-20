@@ -54,6 +54,9 @@ class Keyring:
         'admin',
     ]
 
+    # https://keyring.debian.org/creating-key.html
+    _OPENPGP_MIN_KEY_SIZE = 2048
+
     def __init__(
         self,
         strict=True,
@@ -187,8 +190,9 @@ class Keyring:
                     )
                 )
 
+            list_key = gpg.list_keys()[0]
             epoch_time = int(time.time())
-            expires_time = int(gpg.list_keys()[0]['expires'])
+            expires_time = int(list_key['expires'])
             if self._strict and expires_time < epoch_time:
                 raise Exception(
                     "The OpenPGP file {} contains a expired OpenPGP key."
@@ -197,6 +201,17 @@ class Keyring:
                         pubkey_file,
                         datetime.fromtimestamp(epoch_time),
                         datetime.fromtimestamp(expires_time),
+                    )
+                )
+            # https://keyring.debian.org/creating-key.html
+            if self._strict and int(list_key['length']) < self._OPENPGP_MIN_KEY_SIZE:
+                raise Exception(
+                    "The OpenPGP file {} contains a weak OpenPGP key."
+                    "\nCurrent key length in bits: {}"
+                    "\nExpected at least (inclusive): {}".format(
+                        pubkey_file,
+                        list_key['length'],
+                        self._OPENPGP_MIN_KEY_SIZE,
                     )
                 )
 

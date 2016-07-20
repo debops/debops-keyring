@@ -75,3 +75,15 @@ def test_check_openpgp_pubkey_expired():
         os.path.join(debops_keyring_gpg_test_dir, long_key_id),
         long_key_id,
     )
+
+
+@mock.patch('time.time', mock.MagicMock(return_value=1506634371))
+@raises(Exception)
+def test_check_openpgp_pubkey_size():
+    Keyring._OPENPGP_MIN_KEY_SIZE = 8192
+    debops_keyring = Keyring()
+    long_key_id = '0x2DCCF53E9BC74BEC'
+    assert debops_keyring._check_openpgp_pubkey_from_file(
+        os.path.join(debops_keyring_gpg_test_dir, long_key_id),
+        long_key_id,
+    )
