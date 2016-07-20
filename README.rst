@@ -117,6 +117,14 @@ Otherwise you could easily be impersonated.
 Refer to `OpenPGP Best Practices <https://help.riseup.net/en/security/message-security/openpgp/best-practices>`_
 for more details.
 
+Then add yourself to the corresponding file, either ``contributors`` or
+``developers`` (if the requirements form the `Becoming a DebOps Developer`_
+section are met).
+
+The commit that you make to add or change these files must be signed by your
+most trusted GPG signing subkey (Root of Trust) to prove that you have control
+over this identity.
+
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
 Becoming a DebOps Developer

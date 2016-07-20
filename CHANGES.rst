@@ -22,6 +22,11 @@ Added
 
 - Created the ``contributors`` files to list the DebOps Contributors. [ypid]
 
+- Created the ``bots`` files to list the DebOps Bots. [ypid]
+
+- Require a signed ``git`` commit with the most trusted OpenPGP subkey to add
+  or change the corresponding public keys. [ypid]
+
 Changed
 ~~~~~~~
 
