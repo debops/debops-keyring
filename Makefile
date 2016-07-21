@@ -23,7 +23,7 @@ entities-show: docs-entities.rst-show
 docs/entities.rst: $(SRC_DIR)/debops/keyring.py FORCE_MAKE
 	"$<" --no-strict --output-file "$@"
 
-docs-entities.rst-show:
+docs-entities.rst-show: $(SRC_DIR)/debops/keyring.py
 	"$<" --show-output
 
 # Target will be made during CI of this repository.

@@ -10,13 +10,21 @@ Role models:
 #}
 
 {% macro get_rst_block_for_role(role) %}
+{% set roles_to_role_name_map = {
+  'leader': 'project-leader',
+  'admin': 'project-admin',
+} %}
+{% set roles_to_role_ref_map = {
+  'leader': 'project-leader',
+  'admin': 'project-admins',
+} %}
 
 {%   for entity_data in entities[role] %}
 * `{{ entity_data.name }} <https://wiki.debops.org/wiki:user:{{ entity_data.nick }}>`__ ``[{{ entity_data.nick }}]``
-  {% for entity_role in entity_data.roles if role != (entity_role + "s") %}{{ "– " if (loop.first) else "" }}`{{ entity_role }}`{{ ", " if (not loop.last) else "" }}{% endfor %}
+  {% for entity_role in entity_data.roles if role != (entity_role + "s") %}{{ "– " if (loop.first) else "" }}`{{ roles_to_role_name_map[entity_role] }} <http://docs.debops.org/en/latest/debops-policy/docs/organizational-structure.html#{{ roles_to_role_ref_map[entity_role] }}>`_{{ ", " if (not loop.last) else "" }}{% endfor %}
 
 {% if False %}
-{# TODO: Disabled because the docs are currently served via non-encrypted and legacy HTTP so showing the public key fingerprints does not make sense. #}
+{# TODO: Disabled because the docs are currently served via non-encrypted/legacy HTTP so showing the public key fingerprints could create a false sense of security. #}
   .. container:: toggle
 
       .. container:: header
