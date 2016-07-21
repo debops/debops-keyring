@@ -109,13 +109,16 @@ using:
 
    user@host:~$ gpg --export <long_key_ID> > <long_key_ID>
 
+Additionally, consider uploading your public key(s) to `sks-keyservers.net`_.
+This is also the place where minor changes (subkeys, signatures, key
+experiment) to your key(s) should be uploaded to.
+
 And then specify the key ID to person mapping in the ``keyids`` file.
 
 Note that you should be reasonably confident that "no
 one has ever had a copy of your private key"[#opsec-snowden-quote]_.
 Otherwise you could easily be impersonated.
-Refer to `OpenPGP Best Practices <https://help.riseup.net/en/security/message-security/openpgp/best-practices>`_
-for more details.
+Refer to `OpenPGP Best Practices`_ for more details.
 
 Then add yourself to the corresponding file, either ``contributors`` or
 ``developers`` (if the requirements from the `Becoming a DebOps Developer`_
@@ -150,3 +153,5 @@ key`_ section and then add yourself to the ``developers`` file.
 .. _debops-keyring: https://github.com/debops/debops-keyring
 .. _DebOps Code Signing Policy: http://docs.debops.org/en/latest/debops-policy/docs/code-signing-policy.html
 .. _Rules for key replacement in the Debian keyring: https://keyring.debian.org/replacing_keys.html
+.. _sks-keyservers.net: https://sks-keyservers.net/status/
+.. _OpenPGP Best Practices: https://help.riseup.net/en/security/message-security/openpgp/best-practices

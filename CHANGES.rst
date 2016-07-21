@@ -1,9 +1,11 @@
 Changelog
 =========
 
+.. include:: includes/all.rst
+
 **debops-keyring**
 
-This project adheres to `Semantic Versioning <http://semver.org/spec/v2.0.0.html>`_
+This project adheres to `Semantic Versioning <http://semver.org/spec/v2.0.0.html>`__
 and `human-readable changelog <http://keepachangelog.com/>`_.
 
 The current repository maintainer is drybjed.
@@ -32,6 +34,9 @@ Added
 
 - Require a signed ``git`` commit with the most trusted OpenPGP subkey to add
   or change the corresponding public keys. [ypid]
+
+- Note that public keys should be uploaded and kept up-to-date on
+  `sks-keyservers.net`_.
 
 Changed
 ~~~~~~~
