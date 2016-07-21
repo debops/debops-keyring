@@ -24,7 +24,7 @@ signing each ``git`` commit is sensible or not.
 See also
 ~~~~~~~~
 
-- `DebOps Code Signing Policy <http://docs.debops.org/en/latest/debops-policy/docs/code-signing-policy.html>`_
+- `DebOps Code Signing Policy`_
 - `A Git Horror Story: Repository Integrity With Signed Commits <https://mikegerwitz.com/papers/git-horror-story>`_
 
 Canonical source of the debops-keyring repository
@@ -118,12 +118,13 @@ Refer to `OpenPGP Best Practices <https://help.riseup.net/en/security/message-se
 for more details.
 
 Then add yourself to the corresponding file, either ``contributors`` or
-``developers`` (if the requirements form the `Becoming a DebOps Developer`_
+``developers`` (if the requirements from the `Becoming a DebOps Developer`_
 section are met).
 
 The commit that you make to add or change these files must be signed by your
-most trusted OpenPGP signing subkey (Root of Trust) to prove that you have control
-over this identity.
+most trusted  OpenPGP signing (sub)key (in case you have multiple which cross
+sign each other) to prove that you have control over this identity (Root of
+Trust).
 
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
@@ -137,5 +138,8 @@ works.
 To make this official, all you need to do is follow the `Adding your OpenPGP publc
 key`_ section and then add yourself to the ``developers`` file.
 
-.. The file needs to be self contained e. g. no includes.
+.. The file needs to be self contained e. g. no includes. Thus the needed
+   entries from https://github.com/debops/docs/blob/master/docs/includes/global.rst
+   are inlined here:
 .. _debops-keyring: https://github.com/debops/debops-keyring
+.. _DebOps Code Signing Policy: http://docs.debops.org/en/latest/debops-policy/docs/code-signing-policy.html
