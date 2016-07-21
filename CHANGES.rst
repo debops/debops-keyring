@@ -32,6 +32,11 @@ Added
 - Use the Python 3 script/module for consistency checking for the
   debops-keyring. [ypid_]
 
+- Enforce minimum key size (>=2048) of all keys in the debops-keyring. [ypid_]
+
+- Enforce that all commits in the debops-keyring are signed by a public
+  key present in the keyring (as of latest HEAD). [ypid_]
+
 - Require a signed :command:`git` commit with the most trusted OpenPGP subkey to add
   or change the corresponding public keys. [ypid_]
 
