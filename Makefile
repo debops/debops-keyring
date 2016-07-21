@@ -4,11 +4,12 @@
 
 FORCE_MAKE:
 SRC_DIR = docs/_prepare
+PIP_OPTIONS = --user
 
 default: check-keyring
 
 install-dependencies:
-	pip3 install -r ./docs/_prepare/requirements.txt
+	pip3 install $(PIP_OPTIONS) -r ./docs/_prepare/requirements.txt
 
 docs: docs-prepare docs-build
 
