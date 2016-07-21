@@ -32,6 +32,9 @@ check: check-implementation check-keyring
 check-keyring: $(SRC_DIR)/debops/keyring.py
 	"$<" --consistency-check
 
+# check-keyring-additional:
+#     hkt export-pubkeys $(long_keyid) | hokey lint
+
 check-implementation: check-nose2
 
 check-nose:
