@@ -128,6 +128,12 @@ Trust).
 
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
+Changing your OpenPGP publc key
+-------------------------------
+
+The policy for this procedure is not yet fixed. A starting point could be
+`Rules for key replacement in the Debian keyring`_.
+
 Becoming a DebOps Developer
 ---------------------------
 
@@ -143,3 +149,4 @@ key`_ section and then add yourself to the ``developers`` file.
    are inlined here:
 .. _debops-keyring: https://github.com/debops/debops-keyring
 .. _DebOps Code Signing Policy: http://docs.debops.org/en/latest/debops-policy/docs/code-signing-policy.html
+.. _Rules for key replacement in the Debian keyring: https://keyring.debian.org/replacing_keys.html
