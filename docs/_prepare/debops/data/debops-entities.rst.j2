@@ -20,6 +20,8 @@ Role models:
 } %}
 
 {%   for entity_data in entities[role] %}
+.. _debops_keyring__entity_{{ entity_data.nick }}:
+
 * `{{ entity_data.name }} <https://wiki.debops.org/wiki:user:{{ entity_data.nick }}>`__ ``[{{ entity_data.nick }}]``
   {% for entity_role in entity_data.roles if role != (entity_role + "s") %}{{ "– " if (loop.first) else "" }}`{{ roles_to_role_name_map[entity_role] }} <http://docs.debops.org/en/latest/debops-policy/docs/organizational-structure.html#{{ roles_to_role_ref_map[entity_role] }}>`_{{ ", " if (not loop.last) else "" }}{% endfor %}
 
