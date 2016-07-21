@@ -22,8 +22,13 @@ __author__ = 'Robin Schneider <ypid@riseup.net>'
 __version__ = '0.1.0'
 
 """
-Generate debops-keyring rst documentation from debian-keyring format files.
+Generate debops-keyring rst documentation from files in the debian-keyring format .
 """
+
+try:
+    from tempfile import TemporaryDirectory
+except ImportError:
+    raise Exception("debops.keyring requires Python3. Python2 is currently not supported.")
 
 import os
 import re
@@ -32,10 +37,6 @@ import pprint
 from datetime import datetime
 from subprocess import check_output
 import time
-try:
-    from tempfile import TemporaryDirectory
-except ImportError:
-    raise Exception("debops.keyring requires Python3. Python2 is currently not supported.")
 
 import jinja2
 from gnupg import GPG
@@ -45,11 +46,18 @@ class Keyring:
 
     _EXCLUSIVE_ROLES = set([
         # Or primary roles. A entity can only be member of one exclusive role.
+        #
+        # Exclusive role model is the case for this implementation but must not always make sense.
+        # For example. The permission management on GitHub of the DebOps roles
+        # is handled differently in that DebOps Developers are also members of
+        # the DebOps Contributors role in case Contributors get their own
+        # permissions assigned to them.
         'developer',
         'contributor',
         'bot',
     ])
     _ADDITONAL_ROLES = [
+        # Used for sorting.
         'leader',
         'admin',
     ]
@@ -164,6 +172,18 @@ class Keyring:
     def _get_sorted_nicks(self):
         return sorted(self._entities, key=self._entity_sort)
 
+
+# https://help.riseup.net/en/security/message-security/openpgp/best-practices#openpgp-key-checks
+# Tested version: 0.19.1 (as available in Debian Stretch)
+# Don’t try to reimplement OpenPGP key linting when there is already a tool for it.
+# hopenpgp is currently very alpha-ish and seems to completely lack any kind of documentation.
+# At least it does have JSON output because also the exit codes are not
+# reliable (at least I never got anything else then 0 even with an expired key
+# and with way to small key sizes …)
+# Evaluation of the JSON output is also not easy. There seems to be no overall
+# result of the linting.
+# E. g. when to pass and when to fail would need to be decided ourself.
+# TODO: Recheck if hopenpgp-tools becomes usable (a proper exit code would be a start)
     def _check_openpgp_pubkey_from_file(self, pubkey_file, long_key_id):
         with TemporaryDirectory() as temp_gpg_home:
             gpg = GPG(gnupghome=temp_gpg_home)
@@ -304,6 +324,7 @@ class Keyring:
         with open(output_file, 'w') as output_fh:
             output_fh.write(self.get_entity_docs(template_file))
 
+
 if __name__ == '__main__':
     from argparse import ArgumentParser
 
@@ -367,7 +388,7 @@ if __name__ == '__main__':
     args = args_parser.parse_args()
 
     if not args.output_file and not args.show_output and args.consistency_check is None:
-        args_parser.error('At least one of the following parameters is required: {}'.format(
+        args_parser.error("At least one of the following parameters is required: {}".format(
             ', '.join([
                 '--output-file',
                 '--show-output',
@@ -391,7 +412,7 @@ if __name__ == '__main__':
     debops_keyring.read_entity_role_file('./admins', 'admin')
     debops_keyring.read_entity_role_file('./developers', 'developer')
     debops_keyring.read_entity_role_file('./contributors', 'contributor')
-    debops_keyring.read_entity_role_file('./bots', 'bots')
+    debops_keyring.read_entity_role_file('./bots', 'bot')
 
     if args.consistency_check:
         if not debops_keyring.check_entity_consistency():
@@ -400,7 +421,7 @@ if __name__ == '__main__':
             raise Exception("check_openpgp_consistency failed.")
 
     debops_keyring.read_gpg_output_for_pubkeys(debops_keyring._keyring_name)
-    logger.info("object._entities: {}".format(
+    logger.info("debops_keyring._entities: {}".format(
         pprint.pformat(debops_keyring._entities),
     ))
 

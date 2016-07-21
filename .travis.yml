@@ -5,7 +5,7 @@ language: 'python'
 python: '3.4'
 
 install:
-  - 'make install-dependencies'
+  - 'make install-dependencies PIP_OPTIONS=""'
 
 script:
   - 'make check'

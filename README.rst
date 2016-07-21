@@ -24,7 +24,7 @@ signing each ``git`` commit is sensible or not.
 See also
 ~~~~~~~~
 
-- `DebOps Code Signing Policy <http://docs.debops.org/en/latest/debops-policy/docs/code-signing-policy.html>`_
+- `DebOps Code Signing Policy`_
 - `A Git Horror Story: Repository Integrity With Signed Commits <https://mikegerwitz.com/papers/git-horror-story>`_
 
 Canonical source of the debops-keyring repository
@@ -95,8 +95,8 @@ command:
 
    user@host:~$ git tag --verify <tag-id>
 
-Adding your OpenPGP publc key
------------------------------
+Adding your OpenPGP public key
+------------------------------
 
 When you feel associated with the DebOps Project and have made at least one
 contribution to the Project you are free to add your OpenPGP public key to this
@@ -109,23 +109,33 @@ using:
 
    user@host:~$ gpg --export <long_key_ID> > <long_key_ID>
 
+Additionally, consider uploading your public key(s) to `sks-keyservers.net`_.
+This is also the place where minor changes (subkeys, signatures, key
+experiment) to your key(s) should be uploaded to.
+
 And then specify the key ID to person mapping in the ``keyids`` file.
 
 Note that you should be reasonably confident that "no
 one has ever had a copy of your private key"[#opsec-snowden-quote]_.
 Otherwise you could easily be impersonated.
-Refer to `OpenPGP Best Practices <https://help.riseup.net/en/security/message-security/openpgp/best-practices>`_
-for more details.
+Refer to `OpenPGP Best Practices`_ for more details.
 
 Then add yourself to the corresponding file, either ``contributors`` or
-``developers`` (if the requirements form the `Becoming a DebOps Developer`_
+``developers`` (if the requirements from the `Becoming a DebOps Developer`_
 section are met).
 
 The commit that you make to add or change these files must be signed by your
-most trusted OpenPGP signing subkey (Root of Trust) to prove that you have control
-over this identity.
+most trusted  OpenPGP signing (sub)key (in case you have multiple which cross
+sign each other) to prove that you have control over this identity (Root of
+Trust).
 
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
+
+Changing your OpenPGP public key
+--------------------------------
+
+The policy for this procedure is not yet fixed. A starting point could be
+`Rules for key replacement in the Debian keyring`_.
 
 Becoming a DebOps Developer
 ---------------------------
@@ -134,8 +144,14 @@ To become a DebOps Developer, you should have contribution to the DebOps
 Project for a while (say 6 months) and know a thing or two how the Project
 works.
 
-To make this official, all you need to do is follow the `Adding your OpenPGP publc
+To make this official, all you need to do is follow the `Adding your OpenPGP public
 key`_ section and then add yourself to the ``developers`` file.
 
-.. The file needs to be self contained e. g. no includes.
+.. The file needs to be self contained e. g. no includes. Thus the needed
+   entries from https://github.com/debops/docs/blob/master/docs/includes/global.rst
+   are inlined here:
 .. _debops-keyring: https://github.com/debops/debops-keyring
+.. _DebOps Code Signing Policy: http://docs.debops.org/en/latest/debops-policy/docs/code-signing-policy.html
+.. _Rules for key replacement in the Debian keyring: https://keyring.debian.org/replacing_keys.html
+.. _sks-keyservers.net: https://sks-keyservers.net/status/
+.. _OpenPGP Best Practices: https://help.riseup.net/en/security/message-security/openpgp/best-practices
