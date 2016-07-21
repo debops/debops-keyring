@@ -95,8 +95,8 @@ command:
 
    user@host:~$ git tag --verify <tag-id>
 
-Adding your OpenPGP publc key
------------------------------
+Adding your OpenPGP public key
+------------------------------
 
 When you feel associated with the DebOps Project and have made at least one
 contribution to the Project you are free to add your OpenPGP public key to this
@@ -131,8 +131,8 @@ Trust).
 
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
-Changing your OpenPGP publc key
--------------------------------
+Changing your OpenPGP public key
+--------------------------------
 
 The policy for this procedure is not yet fixed. A starting point could be
 `Rules for key replacement in the Debian keyring`_.
@@ -144,7 +144,7 @@ To become a DebOps Developer, you should have contribution to the DebOps
 Project for a while (say 6 months) and know a thing or two how the Project
 works.
 
-To make this official, all you need to do is follow the `Adding your OpenPGP publc
+To make this official, all you need to do is follow the `Adding your OpenPGP public
 key`_ section and then add yourself to the ``developers`` file.
 
 .. The file needs to be self contained e. g. no includes. Thus the needed
