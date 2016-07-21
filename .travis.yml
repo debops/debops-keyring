@@ -6,6 +6,7 @@ python: '3.4'
 
 install:
   - 'make install-dependencies PIP_OPTIONS=""'
+  - './docs/_prepare/travis_bug_workaround'
 
 script:
   - 'make check'
