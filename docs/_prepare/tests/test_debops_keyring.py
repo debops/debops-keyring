@@ -1,7 +1,12 @@
+import os
+from tempfile import TemporaryDirectory
+import time
+
 from nose.tools import assert_equals, raises
 from unittest import mock
+import git
+
 from debops.keyring import Keyring
-import os
 
 
 debops_keyring_gpg_test_dir = os.path.join(
@@ -87,3 +92,29 @@ def test_check_openpgp_pubkey_size():
         os.path.join(debops_keyring_gpg_test_dir, long_key_id),
         long_key_id,
     )
+
+
+@raises(Exception)
+def test_check_git_commits_unsigned():
+    debops_keyring = Keyring(
+        keyring_name='../../debops-keyring-gpg',
+    )
+    with TemporaryDirectory() as temp_git_repo:
+        r = git.Repo.init(temp_git_repo)
+        temp_git_file = os.path.join(temp_git_repo, 'new-file')
+        with open(temp_git_file, 'w') as temp_git_fh:
+            temp_git_fh.write(str(time.time()))
+        r.index.add([temp_git_file])
+        r.index.commit("Unsigned commit.")
+        debops_keyring.check_git_commits(temp_git_repo)
+
+
+def test_check_git_commits_ok():
+    """
+    FIXME: This test does not create a isolated test environment but instead
+    tests the current git repository!
+    """
+    debops_keyring = Keyring(
+        keyring_name='../../debops-keyring-gpg',
+    )
+    assert debops_keyring.check_git_commits()

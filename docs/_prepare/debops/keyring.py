@@ -40,6 +40,7 @@ import time
 
 import jinja2
 from gnupg import GPG
+import git
 
 
 class Keyring:
@@ -324,6 +325,35 @@ class Keyring:
         with open(output_file, 'w') as output_fh:
             output_fh.write(self.get_entity_docs(template_file))
 
+    def check_git_commits(self, repo_path='.'):
+        with TemporaryDirectory() as temp_gpg_home:
+            gpg = GPG(gnupghome=temp_gpg_home)
+
+            for long_key_id in os.listdir(self._keyring_name):
+                with open(os.path.join(
+                    self._keyring_name,
+                    long_key_id
+                ), 'rb') as pubkey_fh:
+                    gpg.import_keys(pubkey_fh.read())
+
+            repo = git.Git(repo_path)
+            repo.update_environment(GNUPGHOME=temp_gpg_home)
+            # %G?: show "G" for a Good signature,
+            #           "B" for a Bad signature,
+            #           "U" for a good, untrusted signature and
+            #           "N" for no signature
+            for log_line in repo.log('--format=%H %G?').split('\n'):
+                (commit_hash, signature_check) = log_line.split(' ')
+                if signature_check not in ['U', 'G']:
+                    raise Exception(
+                        "OpenPGP signature of commit could not be verified."
+                        "\nAffected commit:\n{}".format(
+                            repo.log(commit_hash),
+                        )
+                    )
+
+        return True
+
 
 if __name__ == '__main__':
     from argparse import ArgumentParser
@@ -384,7 +414,21 @@ if __name__ == '__main__':
         action='store_false',
         dest='consistency_check',
     )
+    args_parser.add_argument(
+        '--no-consistency-check-keyring',
+        help="Do not run a keyring related consistency checks.",
+        action='store_false',
+        dest='consistency_check_keyring',
+    )
+    args_parser.add_argument(
+        '--no-consistency-check-git',
+        help="Do not run a git related consistency checks.",
+        action='store_false',
+        dest='consistency_check_git',
+    )
     args_parser.set_defaults(consistency_check=None)
+    args_parser.set_defaults(consistency_check_keyring=True)
+    args_parser.set_defaults(consistency_check_git=True)
     args = args_parser.parse_args()
 
     if not args.output_file and not args.show_output and args.consistency_check is None:
@@ -415,10 +459,14 @@ if __name__ == '__main__':
     debops_keyring.read_entity_role_file('./bots', 'bot')
 
     if args.consistency_check:
-        if not debops_keyring.check_entity_consistency():
-            raise Exception("check_entity_consistency failed.")
-        if not debops_keyring.check_openpgp_consistency():
-            raise Exception("check_openpgp_consistency failed.")
+        if args.consistency_check_keyring:
+            if not debops_keyring.check_entity_consistency():
+                raise Exception("check_entity_consistency failed.")
+            if not debops_keyring.check_openpgp_consistency():
+                raise Exception("check_openpgp_consistency failed.")
+        if args.consistency_check_git:
+            if not debops_keyring.check_git_commits():
+                raise Exception("check_git_commits failed.")
 
     debops_keyring.read_gpg_output_for_pubkeys(debops_keyring._keyring_name)
     logger.info("debops_keyring._entities: {}".format(
