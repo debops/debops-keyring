@@ -1,3 +1,9 @@
 #!/bin/sh
 
-make check
+## `Keyring.check_git_commits` seems to lock git which is not a good thing when running
+## this as pre commit hook.
+## At least it breaks when this repo is a git submodule.
+## Tests are run on CI build anyway.
+# make check-implementation
+
+make check-keyring-no-git DEBOPS_KEYRING_VERBOSE=''

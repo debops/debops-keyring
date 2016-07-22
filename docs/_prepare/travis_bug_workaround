@@ -1,0 +1,32 @@
+#!/bin/bash
+## @author Copyright (C) 2016 Robin Schneider <ypid@riseup.net>
+## @license GPL-3.0 <https://www.gnu.org/licenses/gpl-3.0.html>
+
+set -o nounset -o pipefail -o errexit
+
+## Workaround for Travis bug.
+## Reset merge commits of Travis that it sometimes makes when `git commit
+## --amend` or similar things are used which seem to cause Travis to use the
+## repo from cache.
+## https://travis-ci.org/debops/debops-keyring/builds/146507005#L268
+## https://docs.travis-ci.com/user/environment-variables/#Default-Environment-Variables
+## For some reason this is not working:
+# git reset --hard "$TRAVIS_COMMIT"
+## So plan B, reset to the last signed commit :)
+
+export GNUPGHOME='/tmp/gnupg_tmp_home_dir_travis'
+
+# shellcheck disable=SC2174
+mkdir --parents --mode=0700 "$GNUPGHOME"
+
+test -d debops-keyring-gpg && gpg --import ./debops-keyring-gpg/0x*
+
+git log --merges --format='%H %G?' > /tmp/git_log_debops_keyring
+last_signed_commit_hash="$(grep '\s[UG]$' --max-count=1 /tmp/git_log_debops_keyring | cut -f 1 -d ' ')"
+
+if [[ -n "$last_signed_commit_hash" ]]
+then
+    git reset --hard "$last_signed_commit_hash"
+fi
+
+exit 0
