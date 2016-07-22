@@ -6,4 +6,4 @@
 ## Tests are run on CI build anyway.
 # make check-implementation
 
-make check-keyring-no-git
+make check-keyring-no-git DEBOPS_KEYRING_VERBOSE=''
