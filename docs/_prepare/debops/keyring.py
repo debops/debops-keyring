@@ -92,6 +92,14 @@ class Keyring:
                     'roles': set([]),  # Sorted later.
                 })
                 self._entities[nick]['keyids'].append(_re.group('keyid'))
+                logging.info(
+                    "OK - Entity {nick} was correctly specified in the"
+                    " {keyids_file} file (public key: {pubkey_id}).".format(
+                        nick=nick,
+                        keyids_file=keyids_file,
+                        pubkey_id=_re.group('keyid'),
+                    )
+                )
 
     def _role_sort(self, role):
         if role in self._ADDITONAL_ROLES:
@@ -122,6 +130,10 @@ class Keyring:
                         exclusive_role_member,
                     )
                 )
+            logging.info("OK - Entity {nick} is only member of one exclusive role: {role}".format(
+                nick=nick,
+                role=exclusive_role_member,
+            ))
             undef_roles = entity_data['roles'].difference(def_roles)
             if len(undef_roles) != 0:
                 raise Exception(
@@ -130,6 +142,9 @@ class Keyring:
                         undef_roles,
                     )
                 )
+            logging.info("OK - Entity {nick} is only member of existing roles.".format(
+                nick=nick,
+            ))
         return True
 
     def read_entity_role_file(self, entity_role_file, entity_role_name):
@@ -160,6 +175,13 @@ class Keyring:
                             self._entities[nick]['name'],
                         )
                     )
+                logging.info(
+                    "OK - Entity {nick} information in {entity_role_file}"
+                    " is consistent with given information the keyids file.".format(
+                        nick=nick,
+                        entity_role_file=entity_role_file,
+                    )
+                )
 
     def entity_is_member_of(self, nick, role):
         return role in self._entities[nick]['roles']
@@ -198,6 +220,9 @@ class Keyring:
                         import_result.results,
                     )
                 )
+            logging.info("OK - OpenPGP file {pubkey_file} contains one OpenPGP key.".format(
+                pubkey_file=pubkey_file,
+            ))
             fingerprint = import_result.results[0]['fingerprint']
             actual_long_key_id = fingerprint[-16:]
             given_long_key_id = re.sub(r'^0x', '', long_key_id)
@@ -210,31 +235,56 @@ class Keyring:
                         actual_long_key_id=actual_long_key_id,
                     )
                 )
+            logging.info(
+                "OK - OpenPGP file {pubkey_file} contains a OpenPGP public key"
+                " whose long key ID matching the file name.".format(
+                    pubkey_file=pubkey_file,
+                )
+            )
 
             list_key = gpg.list_keys()[0]
             epoch_time = int(time.time())
             expires_time = int(list_key['expires'])
-            if self._strict and expires_time < epoch_time:
-                raise Exception(
-                    "The OpenPGP file {} contains a expired OpenPGP key."
-                    "\nCurrent time: {}"
-                    "\nExpires time: {}".format(
-                        pubkey_file,
-                        datetime.fromtimestamp(epoch_time),
-                        datetime.fromtimestamp(expires_time),
+            if self._strict:
+                if expires_time < epoch_time:
+                    raise Exception(
+                        "The OpenPGP file {} contains a expired OpenPGP key."
+                        "\nCurrent date: {}"
+                        "\nExpiration date: {}".format(
+                            pubkey_file,
+                            datetime.fromtimestamp(epoch_time),
+                            datetime.fromtimestamp(expires_time),
+                        )
                     )
-                )
+                else:
+                    logging.info(
+                        "OK - OpenPGP public key from {pubkey_file} is not expired."
+                        " Expiration date: {expiration_date}".format(
+                            pubkey_file=pubkey_file,
+                            expiration_date=datetime.fromtimestamp(expires_time),
+                        )
+                    )
+
             # https://keyring.debian.org/creating-key.html
-            if self._strict and int(list_key['length']) < self._OPENPGP_MIN_KEY_SIZE:
-                raise Exception(
-                    "The OpenPGP file {} contains a weak OpenPGP key."
-                    "\nCurrent key length in bits: {}"
-                    "\nExpected at least (inclusive): {}".format(
-                        pubkey_file,
-                        list_key['length'],
-                        self._OPENPGP_MIN_KEY_SIZE,
+            if self._strict:
+                if int(list_key['length']) < self._OPENPGP_MIN_KEY_SIZE:
+                    raise Exception(
+                        "The OpenPGP file {} contains a weak OpenPGP key."
+                        "\nCurrent key length in bits: {}"
+                        "\nExpected at least (inclusive): {}".format(
+                            pubkey_file,
+                            list_key['length'],
+                            self._OPENPGP_MIN_KEY_SIZE,
+                        )
                     )
-                )
+                else:
+                    logging.info(
+                        "OK - The key length of the OpenPGP public key from {pubkey_file} is not considered to be weak."
+                        " Key length in bits: {key_size}".format(
+                            pubkey_file=pubkey_file,
+                            key_size=list_key['length'],
+                        )
+                    )
 
         return True
 
@@ -353,15 +403,27 @@ class Keyring:
                             repo.log('-1', commit_hash),
                         )
                     )
+            logging.info(
+                "OK - All commits in the repository '{repo_path}' are signed"
+                " and all public keys to verify the signatures are contained in this repository.".format(
+                    repo_path=repo_path,
+                )
+            )
             if commit_count <= 0:
                 # That condition is expected to never be True because of
                 # "returned with exit code 128" for "fatal: bad default revision 'HEAD'".
                 # Leaving it in just to be sure (in case git becomes more
                 # "friendly" in the future.
                 raise Exception(
-                    "Expected at least one commit to check."
+                    "Expected at least one git commit."
                     " Found {} commits.".format(
                         commit_count,
+                    )
+                )
+            else:
+                logging.info(
+                    "OK - The repository '{repo_path}' contains at least one commit.".format(
+                        repo_path=repo_path,
                     )
                 )
 
@@ -480,9 +542,14 @@ if __name__ == '__main__':
         if args.consistency_check_git:
             if not debops_keyring.check_git_commits():
                 raise Exception("check_git_commits failed.")
+        logger.info(
+            "OK - All checks passed (mode: {strict_mode}).".format(
+                strict_mode='strict' if args.strict else 'not strict',
+            )
+        )
 
     debops_keyring.read_gpg_output_for_pubkeys(debops_keyring._keyring_name)
-    logger.info("debops_keyring._entities: {}".format(
+    logger.debug("debops_keyring._entities: {}".format(
         pprint.pformat(debops_keyring._entities),
     ))
 

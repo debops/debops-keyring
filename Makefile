@@ -6,6 +6,7 @@ FORCE_MAKE:
 SRC_DIR = docs/_prepare
 PIP_OPTIONS =
 NOSE_OPTIONS =
+DEBOPS_KEYRING_VERBOSE = --verbose
 
 default: check-keyring
 
@@ -38,10 +39,11 @@ docs-entities.rst-show: $(SRC_DIR)/debops/keyring.py
 check: check-implementation check-keyring
 
 check-keyring: $(SRC_DIR)/debops/keyring.py
-	"$<" --consistency-check
+	"$<" --consistency-check $(DEBOPS_KEYRING_VERBOSE)
+	"$<" --consistency-check --verbose
 
 check-keyring-no-git: $(SRC_DIR)/debops/keyring.py
-	"$<" --consistency-check --no-consistency-check-git
+	"$<" --consistency-check --no-consistency-check-git $(DEBOPS_KEYRING_VERBOSE)
 
 # check-keyring-additional:
 #     hkt export-pubkeys $(long_keyid) | hokey lint
