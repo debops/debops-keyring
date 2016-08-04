@@ -183,7 +183,7 @@ class Keyring:
                     )
                 logging.info(
                     "OK - Entity {nick} information in {entity_role_file}"
-                    " is consistent with given information the keyids file.".format(
+                    " is consistent with given information in the keyids file.".format(
                         nick=nick,
                         entity_role_file=entity_role_file,
                     )

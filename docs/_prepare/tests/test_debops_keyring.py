@@ -150,7 +150,7 @@ def test_check_git_commits_ok():
         #      # "gpg: Invalid option "--faked-system-time"" :(
         #      # Only: gpg2 --batch --gen-key --debug=0 --faked-system-time '2342-05-23'
         #      # has been confirmed to work from current Debian Stretch.
-        #      # Faking it manual anyway …
+        #      # Faking it manually anyway …
         #  )
         #  print(input_data)
         #  print(gpg.gen_key(input_data))
