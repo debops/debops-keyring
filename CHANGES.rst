@@ -22,9 +22,9 @@ Added
 - Added note intended to get DebOps Developers and DebOps Contributors to think
   about OpSec related to their OpenPGP setup. [ypid_]
 
-- Created the ``contributors`` files to list the DebOps Contributors. [ypid_]
+- Created the ``contributors`` file to list the DebOps Contributors. [ypid_]
 
-- Created the ``bots`` files to list the DebOps Bots. [ypid_]
+- Created the ``bots`` file to list the DebOps Bots. [ypid_]
 
 - Generate documentation from the machine readable debops-keyring files using a
   Python 3 script/module. [ypid_]
