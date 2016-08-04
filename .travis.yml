@@ -6,10 +6,9 @@ python: '3.4'
 
 install:
   - 'make install-dependencies PIP_OPTIONS=""'
-  - './docs/_prepare/travis_bug_workaround'
+  - './docs/_prepare/reset_unsigned_merge_commit'
 
 script:
   - 'make check'
-  - './docs/_prepare/debops/keyring.py --consistency-check --verbose'
   - 'git clone --depth 1 https://github.com/nickjj/rolespec'
   - 'cd rolespec ; bin/rolespec -r https://github.com/debops/test-suite'
