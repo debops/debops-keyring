@@ -25,8 +25,7 @@ Role models:
 * `{{ entity_data.name }} <https://wiki.debops.org/wiki:user:{{ entity_data.nick }}>`__ ``[{{ entity_data.nick }}]``
   {% for entity_role in entity_data.roles if role != (entity_role + "s") %}{{ "– " if (loop.first) else "" }}`{{ roles_to_role_name_map[entity_role] }} <http://docs.debops.org/en/latest/debops-policy/docs/organizational-structure.html#{{ roles_to_role_ref_map[entity_role] }}>`_{{ ", " if (not loop.last) else "" }}{% endfor %}
 
-{% if False %}
-{# TODO: Disabled because the docs are currently served via non-encrypted/legacy HTTP so showing the public key fingerprints could create a false sense of security. #}
+
   .. container:: toggle
 
       .. container:: header
@@ -40,7 +39,6 @@ Role models:
 {# indentfirst did not work #}
 {{ entity_data.key_gpg_output[keyid] | indent(9, indentfirst=False) }}
          {% endfor %}
-{% endif %}
 
 {# (entity_data.nick|length) * '~' #}
 {%   endfor %}
