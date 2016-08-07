@@ -14,7 +14,13 @@ The current repository maintainer is drybjed_.
 `debops-keyring master`_ - unreleased
 -------------------------------------
 
-.. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.1.1...master
+.. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.0...master
+
+
+`debops-keyring v0.2.0`_ - 2016-08-07
+-------------------------------------
+
+.. _debops-keyring v0.2.0: https://github.com/debops/debops-keyring/compare/v0.1.1...v0.2.0
 
 Added
 ~~~~~
@@ -49,7 +55,8 @@ Changed
 - Renamed :file:`admin` file to :file:`admins`. There might be multiple admins. [ypid_]
 
 - Use the term "OpenPGP" when not specifically referring to the GnuPG
-  implementation. [ypid_];
+  implementation. [ypid_]
+
 
 `debops-keyring v0.1.1`_ - 2016-07-10
 -------------------------------------
