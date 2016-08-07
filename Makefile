@@ -1,6 +1,6 @@
 .PHONY: default docs docs-prepare docs-build entities-show
 	docs-entities.rst-show check check-keyring check-implementation check-nose
-	check-nose2 FORCE_MAKE install-pre-commit-hook run-pre-commit-hook
+	check-nose2 FORCE_MAKE
 
 FORCE_MAKE:
 SRC_DIR = docs/_prepare
@@ -13,11 +13,19 @@ default: check-keyring
 install-dependencies:
 	pip3 install $(PIP_OPTIONS) -r ./docs/_prepare/requirements.txt
 
+## Git hooks {{{
+.PHONY: install-pre-commit-hook
 install-pre-commit-hook: ./docs/_prepare/hooks/pre-commit
 	ln -srf "$<" "$(shell git rev-parse --git-dir)/hooks"
 
+.PHONY: run-pre-commit-hook
 run-pre-commit-hook: ./docs/_prepare/hooks/pre-commit
 	"$<"
+
+.PHONY: remove-pre-commit-hook
+remove-pre-commit-hook:
+	rm -f "$(shell git rev-parse --git-dir)/hooks/pre-commit"
+## }}}
 
 docs: docs-prepare docs-build
 
