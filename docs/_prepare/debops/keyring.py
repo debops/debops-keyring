@@ -550,11 +550,11 @@ if __name__ == '__main__':
         strict=args.strict,
     )
     debops_keyring.read_keyids('keyids')
-    debops_keyring.read_entity_role_file('./leader', 'leader')
-    debops_keyring.read_entity_role_file('./admins', 'admin')
-    debops_keyring.read_entity_role_file('./developers', 'developer')
-    debops_keyring.read_entity_role_file('./contributors', 'contributor')
-    debops_keyring.read_entity_role_file('./bots', 'bot')
+    debops_keyring.read_entity_role_file('./roles/leader', 'leader')
+    debops_keyring.read_entity_role_file('./roles/admins', 'admin')
+    debops_keyring.read_entity_role_file('./roles/developers', 'developer')
+    debops_keyring.read_entity_role_file('./roles/contributors', 'contributor')
+    debops_keyring.read_entity_role_file('./roles/bots', 'bot')
 
     if args.consistency_check:
         if args.consistency_check_keyring:

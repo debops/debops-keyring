@@ -16,6 +16,12 @@ The current repository maintainer is drybjed_.
 
 .. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.0...master
 
+Changed
+~~~~~~~
+
+- Moved role files to :file:`roles/` directory to keep the root of the
+  repository clean. [ypid_]
+
 
 `debops-keyring v0.2.0`_ - 2016-08-07
 -------------------------------------

@@ -10,22 +10,27 @@ in main repositories of the DebOps Project.
    :local:
    :depth: 1
 
+Terminology
+-----------
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+"SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+document are to be interpreted as described in BCP 14, [`RFC2119`_].
+
 Why OpenPGP keys are used to sign code in the DebOps Project
 ------------------------------------------------------------
 
 The DebOps Project is designed to be used in production environment, therefore
-some kind of a verifiable trust path is required to ensure that the code used to
+some kind of a verifiable trust path is REQUIRED to ensure that the code used to
 execute commands can be trusted. Because DebOps Project is developed in an
 environment not exclusively controlled by its Developers (GitHub), additional
 verification of authenticity provided by commits and tags signed by trusted OpenPGP
 keys is beneficial to the DebOps Project and its users, regardless of whether
 signing each ``git`` commit is sensible or not.
 
-See also
-~~~~~~~~
+See also:
 
 - `DebOps Code Signing Policy`_
-- `A Git Horror Story: Repository Integrity With Signed Commits <https://mikegerwitz.com/papers/git-horror-story>`_
 
 Canonical source of the debops-keyring repository
 -------------------------------------------------
@@ -49,19 +54,19 @@ The repository layout is modeled after the `debian-keyring <https://anonscm.debi
   This file contains a canonical mapping between OpenPGP keys and the user names of
   their owners used within the DebOps Project.
 
-``leader``
+``roles/leader``
   This file defines who the current DebOps Project Leader is.
 
-``admins``
+``roles/admins``
   This file lists the DebOps Project Admins.
 
-``developers``
+``roles/developers``
   This file lists all DebOps Developers.
 
-``contributors``
+``roles/contributors``
   This file lists all DebOps Contributors.
 
-``bots``
+``roles/bots``
   This file lists all DebOps Bots.
 
 Commit and tag verification
@@ -109,25 +114,36 @@ using:
 
    user@host:~$ gpg --export <long_key_ID> > <long_key_ID>
 
-Additionally, consider uploading your public key(s) to `sks-keyservers.net`_.
-This is also the place where minor changes (subkeys, signatures, key
-experiment) to your key(s) should be uploaded to.
+Additionally, it is RECOMMENDED that you upload your public key(s) to
+`sks-keyservers.net`_.  This is also the place where minor changes (subkeys,
+signatures, key experiment) to your key(s) SHOULD be uploaded to.
 
 And then specify the key ID to person mapping in the ``keyids`` file.
 
-Note that you should be reasonably confident that "no
+Note that you SHOULD be reasonably confident that "no
 one has ever had a copy of your private key"[#opsec-snowden-quote]_.
 Otherwise you could easily be impersonated.
 Refer to `OpenPGP Best Practices`_ for more details.
 
-Then add yourself to the corresponding file, either ``contributors`` or
-``developers`` (if the requirements from the `Becoming a DebOps Developer`_
+Then add yourself to the corresponding file, either ``roles/contributors`` or
+``roles/developers`` (if the requirements from the `Becoming a DebOps Developer`_
 section are met).
 
-The commit that you make to add or change these files must be signed by your
-most trusted  OpenPGP signing (sub)key (in case you have multiple which cross
-sign each other) to prove that you have control over this identity (Root of
-Trust).
+The commit that you make to add or change these files MUST be signed by your
+most trusted OpenPGP signing (sub)key (Root of Trust – in case you have
+multiple which (cross) sign each other) to prove that you have control over this
+identity.
+
+To proof that you have full control over your account on the source code
+management platform used to work on the DebOps Project (currently GitHub) it is
+RECOMMENDED to provide a proof via the means of https://keybase.io/.
+
+Additionally, it is RECOMMENDED to take part in the Web Of Trust to make it
+harder for an adversary to fake signatures by pretending to be one of the
+DebOps Contributors or Developers. In particular as the DebOps Project is
+related to the Debian Project it is RECOMMENDED to get your key signed by at
+least one Debian Developer.  A signature from another DebOps Developer is
+sufficient as well.
 
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
@@ -140,12 +156,12 @@ The policy for this procedure is not yet fixed. A starting point could be
 Becoming a DebOps Developer
 ---------------------------
 
-To become a DebOps Developer, you should have contribution to the DebOps
+To become a DebOps Developer, you SHOULD have contribution to the DebOps
 Project for a while (say 6 months) and know a thing or two how the Project
 works.
 
 To make this official, all you need to do is follow the `Adding your OpenPGP public
-key`_ section and then add yourself to the ``developers`` file.
+key`_ section and then add yourself to the ``roles/developers`` file.
 
 .. The file needs to be self contained e. g. no includes. Thus the needed
    entries from https://github.com/debops/docs/blob/master/docs/includes/global.rst
@@ -155,3 +171,4 @@ key`_ section and then add yourself to the ``developers`` file.
 .. _Rules for key replacement in the Debian keyring: https://keyring.debian.org/replacing_keys.html
 .. _sks-keyservers.net: https://sks-keyservers.net/status/
 .. _OpenPGP Best Practices: https://help.riseup.net/en/security/message-security/openpgp/best-practices
+.. _RFC2119: https://tools.ietf.org/html/rfc2119
