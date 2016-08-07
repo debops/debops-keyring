@@ -54,19 +54,19 @@ The repository layout is modeled after the `debian-keyring <https://anonscm.debi
   This file contains a canonical mapping between OpenPGP keys and the user names of
   their owners used within the DebOps Project.
 
-``leader``
+``roles/leader``
   This file defines who the current DebOps Project Leader is.
 
-``admins``
+``roles/admins``
   This file lists the DebOps Project Admins.
 
-``developers``
+``roles/developers``
   This file lists all DebOps Developers.
 
-``contributors``
+``roles/contributors``
   This file lists all DebOps Contributors.
 
-``bots``
+``roles/bots``
   This file lists all DebOps Bots.
 
 Commit and tag verification
@@ -125,8 +125,8 @@ one has ever had a copy of your private key"[#opsec-snowden-quote]_.
 Otherwise you could easily be impersonated.
 Refer to `OpenPGP Best Practices`_ for more details.
 
-Then add yourself to the corresponding file, either ``contributors`` or
-``developers`` (if the requirements from the `Becoming a DebOps Developer`_
+Then add yourself to the corresponding file, either ``roles/contributors`` or
+``roles/developers`` (if the requirements from the `Becoming a DebOps Developer`_
 section are met).
 
 The commit that you make to add or change these files MUST be signed by your
@@ -161,7 +161,7 @@ Project for a while (say 6 months) and know a thing or two how the Project
 works.
 
 To make this official, all you need to do is follow the `Adding your OpenPGP public
-key`_ section and then add yourself to the ``developers`` file.
+key`_ section and then add yourself to the ``roles/developers`` file.
 
 .. The file needs to be self contained e. g. no includes. Thus the needed
    entries from https://github.com/debops/docs/blob/master/docs/includes/global.rst
