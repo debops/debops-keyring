@@ -1,0 +1,34 @@
+#!/bin/bash
+## @author Copyright (C) 2016 Robin Schneider <ypid@riseup.net>
+## @license GPL-3.0 <https://www.gnu.org/licenses/gpl-3.0.html>
+
+set -o nounset -o pipefail -o errexit
+
+# When Travis CI integration is enabled for a repository on GitHub, Travis by
+# default tests all PRs made against the repository.
+# The thing to note here is that Travis does *not* test the HEAD commit of the
+# PR directly but instead a auto merge commit done by GitHub against the target branch
+# of the PR.
+# This merge commit is done in the name of the PR author (and is obviously/hopefully not signed by a valid key of the author).
+# But as signed commits are enforced for this repository, the unsigned commit has to be reverted to reliably test this.
+#
+# The idea to do this is to check if the last commit is a unsigned merge
+# commit, if yes revert to the commit before that one.
+
+# Safety check to prohibit unsigned merge commits when testing a normal
+# repository (not a PR).
+# https://docs.travis-ci.com/user/environment-variables/
+if [[ "${TRAVIS_PULL_REQUEST:-}" == 'false' ]]; then exit 0; fi
+
+# Assumes that GitHub merges the PR into the target branch.
+pr_head_commit="$(git log --format='%H %G? %P' --max-count=1 | egrep '^[^\s]+\s+[^UG](:?\s+[^\s])' | cut -f 4 -d ' ')"
+
+# Ensure that the assumed HEAD of the PR is not a merge commit.
+pr_head_commit="$(git log --format='%H' --max-count=1 --no-merges "$pr_head_commit")"
+
+if [[ -n "${pr_head_commit}" ]]
+then
+    git reset --hard "${pr_head_commit}"
+fi
+
+exit 0

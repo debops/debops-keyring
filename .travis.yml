@@ -6,6 +6,7 @@ python: '3.4'
 
 install:
   - 'make install-dependencies PIP_OPTIONS=""'
+  - './docs/_prepare/reset_unsigned_merge_commit'
 
 script:
   - 'make check'

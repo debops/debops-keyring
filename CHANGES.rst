@@ -22,15 +22,20 @@ Added
 - Added note intended to get DebOps Developers and DebOps Contributors to think
   about OpSec related to their OpenPGP setup. [ypid_]
 
-- Created the ``contributors`` files to list the DebOps Contributors. [ypid_]
+- Created the :file:`contributors` file to list the DebOps Contributors. [ypid_]
 
-- Created the ``bots`` files to list the DebOps Bots. [ypid_]
+- Created the :file:`bots` file to list the DebOps Bots. [ypid_]
 
 - Generate documentation from the machine readable debops-keyring files using a
   Python 3 script/module. [ypid_]
 
-- Use the Python 3 script/module for consistency checking for the
+- Use the Python 3 script/module for consistency checking of the
   debops-keyring. [ypid_]
+
+- Enforce minimum key size (>=2048) of all keys in the debops-keyring. [ypid_]
+
+- Enforce that all commits in the debops-keyring are signed by a public
+  key present in the keyring (as of latest HEAD). [ypid_]
 
 - Require a signed :command:`git` commit with the most trusted OpenPGP subkey to add
   or change the corresponding public keys. [ypid_]
@@ -41,7 +46,7 @@ Added
 Changed
 ~~~~~~~
 
-- Renamed ``admin`` file to ``admins``. There might be multiple admins. [ypid_]
+- Renamed :file:`admin` file to :file:`admins`. There might be multiple admins. [ypid_]
 
 - Use the term "OpenPGP" when not specifically referring to the GnuPG
   implementation. [ypid_];
@@ -62,11 +67,11 @@ Added
 - Wrote initial "Adding your OpenPGP public key" and "Becoming a DebOps Developer"
   sections. [ypid_]
 
-- Created the ``leader`` files which defines the DebOps Project Leader. [ypid_]
+- Created the :file:`leader` files which defines the DebOps Project Leader. [ypid_]
 
-- Created the ``admin`` file which defines the DebOps Project Admin. [ypid_]
+- Created the :file:`admin` file which defines the DebOps Project Admin. [ypid_]
 
-- Created the ``developers`` files which lists the DebOps Developers. [ypid_]
+- Created the :file:`developers` files which lists the DebOps Developers. [ypid_]
 
 
 debops-keyring v0.1.0 - 2016-07-10
