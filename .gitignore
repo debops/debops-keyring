@@ -17,3 +17,7 @@ __pycache__/
 *$py.class
 
 .coverage
+
+*~
+docs/_prepare/tests/fake_gnupg_home/random_seed
+docs/_prepare/tests/fake_gnupg_home/gpg.conf
