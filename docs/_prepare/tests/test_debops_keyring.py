@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
+
 import os
-import re
 from tempfile import TemporaryDirectory
 import time
 import shutil
