@@ -55,7 +55,7 @@ Changed
 - Renamed :file:`admin` file to :file:`admins`. There might be multiple admins. [ypid_]
 
 - Use the term "OpenPGP" when not specifically referring to the GnuPG
-  implementation. [ypid_];
+  implementation. [ypid_]
 
 
 `debops-keyring v0.1.1`_ - 2016-07-10
