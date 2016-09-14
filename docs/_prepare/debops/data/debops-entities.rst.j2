@@ -21,6 +21,9 @@ Role models:
 
 {%   for entity_data in entities[role] %}
 .. _debops_keyring__entity_{{ entity_data.nick }}:
+{% if "leader" in entity_data.roles %}
+.. _debops_keyring__role_leader:
+{% endif %}
 
 * `{{ entity_data.name }} <https://wiki.debops.org/wiki:user:{{ entity_data.nick }}>`__ ``[{{ entity_data.nick }}]``
   {% for entity_role in entity_data.roles if role != (entity_role + "s") %}{{ "– " if (loop.first) else "" }}`{{ roles_to_role_name_map[entity_role] }} <http://docs.debops.org/en/latest/debops-policy/docs/organizational-structure.html#{{ roles_to_role_ref_map[entity_role] }}>`_{{ ", " if (not loop.last) else "" }}{% endfor %}
@@ -30,7 +33,7 @@ Role models:
 
       .. container:: header
 
-          **Click to Show/Hide OpenPGP public key(s)**
+          **Click to show/hide OpenPGP public key information and fingerprints**
 
       .. code-block:: none
          :linenos:
@@ -50,13 +53,21 @@ Currently none present in the debops-keyring.
 Refer to the `Organizational structure`_ for details about defined roles and
 terms.
 
+.. _debops_keyring__role_developers:
+
 DebOps Developers
 -----------------
 {{ get_rst_block_for_role("developers") }}
 
+
+.. _debops_keyring__role_contributors:
+
 DebOps Contributors
 -------------------
 {{ get_rst_block_for_role("contributors") }}
+
+
+.. _debops_keyring__role_bots:
 
 DebOps Bots
 -----------
