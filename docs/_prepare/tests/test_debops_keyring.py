@@ -206,7 +206,7 @@ def test_check_git_commits_ok():
         )
         debops_keyring.check_git_commits(tmp_git_repo)
 
-        # Now make a unsigned commit to ensure that this raises an exception.
+        # Now make an unsigned commit to ensure that this raises an exception.
         with open(tmp_git_file, 'w') as tmp_git_fh:
             tmp_git_fh.write(str(time.time()))
         git_cmd.add([tmp_git_file])
