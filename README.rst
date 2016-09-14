@@ -78,27 +78,27 @@ a directory on your computer, for example with a command:
 
 .. code-block:: console
 
-   user@host:~$ git clone https://github.com/debops/debops-keyring ~/src/github.com/debops/debops-keyring
+   git clone https://github.com/debops/debops-keyring ~/src/github.com/debops/debops-keyring
 
 After that, you should import the provided keys to your OpenPGP keyring:
 
 .. code-block:: console
 
-   user@host:~$ gpg --import ~/src/github.com/debops/debops-keyring/debops-keyring-gpg/0x*
+   gpg --import ~/src/github.com/debops/debops-keyring/debops-keyring-gpg/0x*
 
 To verify OpenPGP signatures on commits in a ``git`` repository, you can use the
 command:
 
 .. code-block:: console
 
-   user@host:~$ git log --show-signature
+   git log --show-signature
 
 To verify OpenPGP signature on a tag in a ``git`` repository, you can use the
 command:
 
 .. code-block:: console
 
-   user@host:~$ git tag --verify <tag-id>
+   git tag --verify <tag-id>
 
 Adding your OpenPGP public key
 ------------------------------
@@ -112,7 +112,7 @@ using:
 
 .. code-block:: console
 
-   user@host:~$ gpg --export <long_key_ID> > <long_key_ID>
+   gpg --export <long_key_ID> > <long_key_ID>
 
 Additionally, it is RECOMMENDED that you upload your public key(s) to
 `sks-keyservers.net`_.  This is also the place where minor changes (subkeys,
