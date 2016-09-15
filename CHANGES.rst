@@ -16,6 +16,12 @@ The current repository maintainer is drybjed_.
 
 .. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.0...master
 
+Added
+~~~~~
+
+- Add OpenPGP key ``0xDAA9DC5E750C1E85`` (Aleksey Gavrilov) as DebOps
+  Contributor. [drybjed_]
+
 Changed
 ~~~~~~~
 
