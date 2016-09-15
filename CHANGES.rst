@@ -14,7 +14,13 @@ The current repository maintainer is drybjed_.
 `debops-keyring master`_ - unreleased
 -------------------------------------
 
-.. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.0...master
+.. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.1...master
+
+
+`debops-keyring v0.2.1`_ - 2016-09-15
+-------------------------------------
+
+.. _debops-keyring v0.2.1: https://github.com/debops/debops-keyring/compare/v0.2.0...v0.2.1
 
 Added
 ~~~~~
