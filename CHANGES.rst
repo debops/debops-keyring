@@ -14,13 +14,28 @@ The current repository maintainer is drybjed_.
 `debops-keyring master`_ - unreleased
 -------------------------------------
 
-.. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.0...master
+.. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.1...master
+
+
+`debops-keyring v0.2.1`_ - 2016-09-15
+-------------------------------------
+
+.. _debops-keyring v0.2.1: https://github.com/debops/debops-keyring/compare/v0.2.0...v0.2.1
+
+Added
+~~~~~
+
+- Add OpenPGP key ``0xDAA9DC5E750C1E85`` (Aleksey Gavrilov) as DebOps
+  Contributor. [drybjed_]
 
 Changed
 ~~~~~~~
 
 - Moved role files to :file:`roles/` directory to keep the root of the
   repository clean. [ypid_]
+
+- Clarify the requirements for additional OpenPGP key proofs for DebOps
+  Contributors and DebOps Developers. [drybjed_]
 
 
 `debops-keyring v0.2.0`_ - 2016-08-07
