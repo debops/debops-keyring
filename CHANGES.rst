@@ -28,6 +28,9 @@ Changed
 - Moved role files to :file:`roles/` directory to keep the root of the
   repository clean. [ypid_]
 
+- Clarify the requirements for additional OpenPGP key proofs for DebOps
+  Contributors and DebOps Developers. [drybjed_]
+
 
 `debops-keyring v0.2.0`_ - 2016-08-07
 -------------------------------------

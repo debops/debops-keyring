@@ -140,9 +140,10 @@ most trusted OpenPGP signing (sub)key (Root of Trust – in case you have
 multiple which (cross) sign each other) to prove that you have control over this
 identity.
 
-To proof that you have full control over your account on the source code
+To prove that you have full control over your account on the source code
 management platform used to work on the DebOps Project (currently GitHub) it is
-RECOMMENDED to provide a proof via the means of https://keybase.io/.
+RECOMMENDED for the DebOps Contributors and REQUIRED for the DebOps Developers
+to provide a proof via the means of https://keybase.io/.
 
 Additionally, it is RECOMMENDED to take part in the Web Of Trust to make it
 harder for an adversary to fake signatures by pretending to be one of the
