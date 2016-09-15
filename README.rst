@@ -107,6 +107,12 @@ When you feel associated with the DebOps Project and have made at least one
 contribution to the Project you are free to add your OpenPGP public key to this
 repository.
 
+Printing Long Key IDs:
+
+.. code-block:: console
+
+   gpg --keyid-format long --list-keys
+
 To do so you should add your OpenPGP public key(s) to ``debops-keyring-gpg/``
 using:
 
