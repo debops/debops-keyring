@@ -131,6 +131,7 @@ one has ever had a copy of your private key"[#opsec-snowden-quote]_.
 Otherwise you could easily be impersonated.
 Refer to `OpenPGP Best Practices`_ for more details.
 
+
 Then add yourself to the corresponding file, either ``roles/contributors`` or
 ``roles/developers`` (if the requirements from the `Becoming a DebOps Developer`_
 section are met).
@@ -151,6 +152,13 @@ DebOps Contributors or Developers. In particular as the DebOps Project is
 related to the Debian Project it is RECOMMENDED to get your key signed by at
 least one Debian Developer.  A signature from another DebOps Developer is
 sufficient as well.
+
+RECOMMENDED, source https://bettercrypto.org/:
+
+  For asymmetric public-key cryptography we consider any key length below 3248 bits to be
+  deprecated at the time of this writing (for long term protection).
+
+2048 bits is the absolut minimum key size which MUST be met (enforced by CI tests).
 
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
