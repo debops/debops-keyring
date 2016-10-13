@@ -120,9 +120,10 @@ using:
 
    gpg --export <long_key_ID> > <long_key_ID>
 
-Additionally, it is RECOMMENDED that you upload your public key(s) to
-`sks-keyservers.net`_.  This is also the place where minor changes (subkeys,
-signatures, key experiment) to your key(s) SHOULD be uploaded to.
+Additionally, it is REQUIRED that you upload your public key(s) to
+`sks-keyservers.net`_.  This is also the place where changes (subkeys actively used for signing or encryption,
+and key expiration) to your key(s) MUST be uploaded to.
+Key signatures SHOULD be uploaded there as well.
 
 And then specify the key ID to person mapping in the ``keyids`` file.
 

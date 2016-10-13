@@ -41,6 +41,9 @@ Changed
 - Clarify the requirements for additional OpenPGP key proofs for DebOps
   Contributors and DebOps Developers. [drybjed_]
 
+- Key upload and keeping it up-to-date on `sks-keyservers.net`_ is now
+  REQUIRED. [ypid_]
+
 
 `debops-keyring v0.2.0`_ - 2016-08-07
 -------------------------------------
