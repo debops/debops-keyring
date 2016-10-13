@@ -28,6 +28,10 @@ Added
 - Add OpenPGP key ``0xDAA9DC5E750C1E85`` (Aleksey Gavrilov) as DebOps
   Contributor. [drybjed_]
 
+- Add REQUIREMENTS which are enforced by CI tests also to the README. [ypid_]
+
+- Add RECOMMENDATION for an asymmetric public-key size of at least 3248 bits. [ypid_]
+
 Changed
 ~~~~~~~
 
@@ -36,6 +40,10 @@ Changed
 
 - Clarify the requirements for additional OpenPGP key proofs for DebOps
   Contributors and DebOps Developers. [drybjed_]
+
+- Key uploading and updating to `sks-keyservers.net`_ (or another OpenPGP
+  keyserver pools which sync with `sks-keyservers.net`_) is now
+  REQUIRED. [ypid_]
 
 
 `debops-keyring v0.2.0`_ - 2016-08-07
@@ -62,7 +70,7 @@ Added
 - Enforce minimum key size (>=2048) of all keys in the debops-keyring. [ypid_]
 
 - Enforce that all commits in the debops-keyring are signed by a public
-  key present in the keyring (as of latest HEAD). [ypid_]
+  key present in the keyring (as of :command:`git` HEAD). [ypid_]
 
 - Require a signed :command:`git` commit with the most trusted OpenPGP subkey to add
   or change the corresponding public keys. [ypid_]

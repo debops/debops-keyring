@@ -120,9 +120,11 @@ using:
 
    gpg --export <long_key_ID> > <long_key_ID>
 
-Additionally, it is RECOMMENDED that you upload your public key(s) to
-`sks-keyservers.net`_.  This is also the place where minor changes (subkeys,
-signatures, key experiment) to your key(s) SHOULD be uploaded to.
+Additionally, it is REQUIRED that you upload your public key(s) to
+`sks-keyservers.net`_ or another OpenPGP keyserver pools which sync with
+`sks-keyservers.net`_. This is also the place where changes (subkeys actively
+used for signing or encryption, and key expiration) to your key(s) MUST be
+uploaded to.  Key signatures SHOULD be uploaded there as well.
 
 And then specify the key ID to person mapping in the ``keyids`` file.
 
@@ -130,6 +132,7 @@ Note that you SHOULD be reasonably confident that "no
 one has ever had a copy of your private key"[#opsec-snowden-quote]_.
 Otherwise you could easily be impersonated.
 Refer to `OpenPGP Best Practices`_ for more details.
+
 
 Then add yourself to the corresponding file, either ``roles/contributors`` or
 ``roles/developers`` (if the requirements from the `Becoming a DebOps Developer`_
@@ -151,6 +154,13 @@ DebOps Contributors or Developers. In particular as the DebOps Project is
 related to the Debian Project it is RECOMMENDED to get your key signed by at
 least one Debian Developer.  A signature from another DebOps Developer is
 sufficient as well.
+
+RECOMMENDED, source https://bettercrypto.org/:
+
+  For asymmetric public-key cryptography we consider any key length below 3248 bits to be
+  deprecated at the time of this writing (for long term protection).
+
+2048 bits is the absolut minimum key size which MUST be met (enforced by CI tests).
 
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
