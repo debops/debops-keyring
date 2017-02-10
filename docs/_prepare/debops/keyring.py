@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Copyright (C) 2016 Robin Schneider <ypid@riseup.net>
-# Copyright (C) 2016 DebOps Project http://debops.org/
+# Copyright (C) 2016-2017 Robin Schneider <ypid@riseup.net>
+# Copyright (C) 2016-2017 DebOps Project http://debops.org/
 #
 # This Python module is part of DebOps.
 #
@@ -411,7 +411,10 @@ class Keyring:
             #           "B" for a Bad signature,
             #           "U" for a good, untrusted signature and
             #           "N" for no signature
-            for log_line in repo.log('--format=%H %G?').split('\n'):
+            # TODO 'N' is also returned for signatures made by expired subkeys.
+            # Seems to be a bug.
+            # Current workaround is only to check the HEAD commit.
+            for log_line in [repo.log('--format=%H %G?').split('\n')[0]]:
                 (commit_hash, signature_check) = log_line.split(' ')
                 commit_count += 1
                 if signature_check not in ['U', 'G']:

@@ -16,6 +16,15 @@ The current repository maintainer is drybjed_.
 
 .. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.1...master
 
+Fixed
+~~~~~
+
+- :command:`git log '--format=%H %G?'` handles signatures made by an expired
+  OpenPGP subkey improperly by marking the commit as "N" (no signature).
+  This breaks the history checking and the enforcement that all commits MUST be
+  signed. The workaround is to only check the HEAD commit in the assumption
+  that the subkey used to sign it is not expired.
+
 
 `debops-keyring v0.2.1`_ - 2016-09-15
 -------------------------------------
