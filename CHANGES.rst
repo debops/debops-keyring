@@ -30,7 +30,8 @@ Added
 
 - Add REQUIREMENTS which are enforced by CI tests also to the README. [ypid_]
 
-- Add RECOMMENDATION for an asymmetric public-key size of at least 3248 bits. [ypid_]
+- Add RECOMMENDATION for an asymmetric public-key size of at least 3248 bits
+  (for RSA). [ypid_]
 
 Changed
 ~~~~~~~

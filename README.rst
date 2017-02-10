@@ -160,7 +160,7 @@ RECOMMENDED, source https://bettercrypto.org/:
   For asymmetric public-key cryptography we consider any key length below 3248 bits to be
   deprecated at the time of this writing (for long term protection).
 
-2048 bits is the absolut minimum key size which MUST be met (enforced by CI tests).
+2048 bits (assuming RSA) is the absolut minimum key size which MUST be met (enforced by CI tests).
 
 .. [#opsec-snowden-quote] https://www.wired.com/2014/10/snowdens-first-emails-to-poitras/
 
