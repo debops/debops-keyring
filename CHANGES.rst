@@ -23,7 +23,11 @@ Fixed
   OpenPGP subkey improperly by marking the commit as "N" (no signature).
   This breaks the history checking and the enforcement that all commits MUST be
   signed. The workaround is to only check the HEAD commit in the assumption
-  that the subkey used to sign it is not expired.
+  that the subkey used to sign it is not expired. [ypid_]
+
+- OpenPGP keys can have multiple subkeys. This is not interpreted as an error
+  anymore as long as one of the keys is the public key with the matching key
+  fingerprint. [ypid_]
 
 
 `debops-keyring v0.2.1`_ - 2016-09-15

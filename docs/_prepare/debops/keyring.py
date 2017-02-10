@@ -218,18 +218,18 @@ class Keyring:
             gpg = GPG(gnupghome=temp_gpg_home)
             with open(pubkey_file, 'rb') as pubkey_fh:
                 import_result = gpg.import_keys(pubkey_fh.read())
-            if len(import_result.results) != 1:
+            if len(import_result.results) == 0:
                 raise Exception(
-                    "The OpenPGP file {} contains none or more than one OpenPGP key."
+                    "The OpenPGP file {} contains no OpenPGP keys."
                     " Keys: {}".format(
                         pubkey_file,
                         import_result.results,
                     )
                 )
-            logging.info("OK - OpenPGP file {pubkey_file} contains one OpenPGP key.".format(
+            logging.info("OK - OpenPGP file {pubkey_file} contains one or more OpenPGP key.".format(
                 pubkey_file=pubkey_file,
             ))
-            fingerprint = import_result.results[0]['fingerprint']
+            fingerprint = [x['fingerprint'] for x in import_result.results if x.get('fingerprint')][0]
             actual_long_key_id = fingerprint[-16:]
             given_long_key_id = re.sub(r'^0x', '', long_key_id)
             if actual_long_key_id.lower() != given_long_key_id.lower():
