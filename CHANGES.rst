@@ -16,6 +16,11 @@ The current repository maintainer is drybjed_.
 
 .. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.1...master
 
+Added
+~~~~~
+
+- Add Tobias Mueller's OpenPGP key as DebOps Contributor. [muelli_]
+
 Fixed
 ~~~~~
 
