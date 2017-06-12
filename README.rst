@@ -118,7 +118,7 @@ using:
 
 .. code-block:: console
 
-   gpg --export <long_key_ID> > <long_key_ID>
+   gpg -a --export <long_key_ID> > <long_key_ID>
 
 Additionally, it is REQUIRED that you upload your public key(s) to
 `sks-keyservers.net`_ or another OpenPGP keyserver pools which sync with

@@ -16,6 +16,14 @@ The current repository maintainer is drybjed_.
 
 .. _debops-keyring master: https://github.com/debops/debops-keyring/compare/v0.2.1...master
 
+Changed
+~~~~~~~
+
+- Increased expiration date of my public keys from 2017-06-18 to 2018-06-11. [ypid_]
+
+- Prefer armor public key exports because it is easier to diff.
+  Updated the documentation accordingly. [ypid_]
+
 Fixed
 ~~~~~
 
